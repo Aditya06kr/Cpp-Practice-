@@ -1,0 +1,55 @@
+// Code-1 Using Reverse Iterating
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+	int n;
+	cin>>n;
+	map<int,multiset<string>> m;
+	while(n--){
+       string s;
+	   int x;
+	   cin>>s>>x;
+       m[x].insert(s);
+	}
+	auto cur_it=--m.end();
+	while(true){
+		auto &students=(*cur_it).second;
+		auto &marks=(*cur_it).first;
+		for(auto &student : students){
+			cout<<student<<" "<<marks<<"\n";
+		}
+		if(cur_it==m.begin()){
+			break;
+		}
+		else{
+			cur_it--;
+		}
+	}
+}
+
+
+
+// Code-2 Using auto keyword but in decreasing order
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+	int n;
+	cin>>n;
+	map<int,multiset<string>> m;
+	while(n--){
+       string s;
+	   int x;
+	   cin>>s>>x;
+       m[-1*x].insert(s);
+	}
+	for(auto value: m){
+		auto &students=value.second;
+		auto &marks=value.first;
+		for(auto &student : students){
+			cout<<student<<" "<<-1*marks<<"\n";
+		}
+		
+	}
+}
