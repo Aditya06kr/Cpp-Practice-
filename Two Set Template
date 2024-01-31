@@ -1,0 +1,76 @@
+// गणपति बप्पा मोरया
+#include <bits/stdc++.h>
+using namespace std;
+#define int               long long
+#define MOD               1000000007ll
+#define MOD1              998244353ll
+#define endl              ("\n")
+#define py                cout<<"YES\n"
+#define pn                cout<<"NO\n"
+#define fi(i,a,n)         for(int i=a;i<n;i++)
+#define inp(v)            for (auto &x : v) cin >> x;
+#define out(v)            for (auto  x : v) cout<<x<<" ";
+#define pb                push_back
+#define pk                pop_back
+#define mkp               make_pair
+#define ff                first
+#define ss                second
+#define all(x)            (x).begin(), (x).end()
+
+class TwoSets{
+    private:
+    multiset<int> m1,m2;
+    int k,sum=0;
+
+    public:
+    TwoSets(int k): k(k) {};
+
+    void add(int x){
+        m1.insert(x);
+        sum+=x;
+        if(m1.size()>k){
+            int ele=*(m1.rbegin());
+            m1.erase(m1.find(ele));
+            sum-=ele;
+            m2.insert(ele);
+        }
+    }
+    void remove(int x){
+        if(m2.find(x)!=m2.end()){
+            m2.erase(m2.find(x));
+        }
+        else if(m1.find(x)!=m1.end()){
+            sum-=x;
+            m1.erase(m1.find(x));
+            if(m2.empty()) return;
+            int ele=*(m2.begin());
+            m1.insert(ele);
+            sum+=ele;
+            m2.erase(m2.find(ele));
+        }
+    }
+
+    int getSum(){
+        return sum;
+    }
+
+    int getSize(){
+        return m1.size()+m2.size();
+    }
+};
+
+void solve(){
+    
+}
+
+int32_t main ()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t=1;
+    cin >> t;
+    while (t--){
+        solve();
+    }
+    return 0;
+}
